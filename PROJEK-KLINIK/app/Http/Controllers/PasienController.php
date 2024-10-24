@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PasienController extends Controller
 {
@@ -34,9 +35,13 @@ class PasienController extends Controller
             'umur' => 'required',
             'jenis_kelamin' => 'required',
             'alamat' => 'nullable',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:10000'
+
+        
         ]);
         $pasien = new \App\Models\Pasien;
         $pasien->fill($requestData);
+        $pasien->foto = $request->file('foto')->store('public');
         $pasien->save();
         flash('Yeyy.. Data berhasil disimpan')->success();
         return back();
