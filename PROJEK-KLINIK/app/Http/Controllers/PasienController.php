@@ -35,15 +35,13 @@ class PasienController extends Controller
             'umur' => 'required',
             'jenis_kelamin' => 'required',
             'alamat' => 'nullable',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:10000'
-
-        
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:1000',
         ]);
         $pasien = new \App\Models\Pasien;
         $pasien->fill($requestData);
         $pasien->foto = $request->file('foto')->store('public');
         $pasien->save();
-        flash('Yeyy.. Data berhasil disimpan')->success();
+        flash('Data berhasil disimpan')->success();
         return back();
     }
 
