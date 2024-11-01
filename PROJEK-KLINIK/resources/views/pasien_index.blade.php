@@ -35,6 +35,18 @@
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->update_at }}</td>
+                            <td>
+                                <a href="/pasien/{{ $item->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+
+                                <form action="/pasien/{{ $item->id }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ? ')">
+                                    Hapus
+                                </button>
+                                
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
