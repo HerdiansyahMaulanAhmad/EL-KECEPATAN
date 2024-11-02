@@ -28,9 +28,47 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-            
-
+                    <!-- Left Side Of Navbar --> 
+                    <ul class="navbar-nav me-auto">
+                        @auth
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active"
+                                aria-current="page"
+                                href="#"
+                                >Beranda</a
+                            >
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                Data Pasien
+                            </a>
+                            <ul
+                                class="dropdown-menu"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <li>
+                                    <a class="dropdown-item" href="/pasien">Lihat Data</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/pasien/create"
+                                        >Tambah Data</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+    
+                        @endauth
+                        
+                    </ul>
+                        
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -51,43 +89,7 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-                                <ul class="navbar-nav me-auto">
-                                    <li class="nav-item">
-                                        <a
-                                            class="nav-link active"
-                                            aria-current="page"
-                                            href="#"
-                                            >Beranda</a
-                                        >
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a
-                                            class="nav-link dropdown-toggle"
-                                            href="#"
-                                            id="navbarDropdown"
-                                            role="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                        >
-                                            Data Pasien
-                                        </a>
-                                        <ul
-                                            class="dropdown-menu"
-                                            aria-labelledby="navbarDropdown"
-                                        >
-                                            <li>
-                                                <a class="dropdown-item" href="/pasien">Lihat Data</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/pasien/create"
-                                                    >Tambah Data</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </li>
             
-                                </ul>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
