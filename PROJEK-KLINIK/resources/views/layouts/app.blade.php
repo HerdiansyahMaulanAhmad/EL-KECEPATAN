@@ -15,6 +15,13 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        .card {
+            background-color: white;
+        }
+    </style>
+
 </head>
 <body>
     <div id="app">
@@ -39,6 +46,9 @@
                                 >Beranda</a
                             >
                         </li>
+                        <li class="nav-item">
+                            <a href="/daftar" class="nav-link">Pendaftaran Pasien</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle"
@@ -59,12 +69,10 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="/pasien/create"
-                                        >Tambah Data</a
-                                    >
+                                        >Tambah Data</a>
                                 </li>
                             </ul>
                         </li>
-    
                         @endauth
                         
                     </ul>
@@ -116,7 +124,9 @@
                     </div>
                 @endif
                 @include('flash::message')
-                @yield('content')
+                <div class="container">
+                    @yield('content')
+                </div>
         </main>
     </div>
 </body>

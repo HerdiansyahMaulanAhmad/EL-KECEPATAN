@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Edit Data <b>{{ $pasien->nama }}</b></h5>
+            <h5 class="card-header">Edit Data Pasien   <b>{{ $pasien->nama }}</b></h5>
             <form action="/pasien/{{ $pasien->id }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf

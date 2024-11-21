@@ -1,38 +1,28 @@
 @extends('layouts.app', ['title' => 'Data Pasien'])
 @section('content')
     <div class="card">
-        <h3 class="card-header">Data Pasien</h3>
+        <h3 class="card-header">Data Pendaftaran Pasien</h3>
         <div class="card-body">
-           <a href="/pasien/create" class="btn btn-primary">Tambah Data Pasien</a>
+           <a href="/daftar/create" class="btn btn-primary">Tambah Data Pasien</a>
            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>NO BPJS</th>
                         <th>NAMA</th>
-                        <th>UMUR</th>
                         <th>JENIS KELAMIN</th>
-                        <th>ALAMAT</th>
-                        <th>TANGGAL BUAT</th>
-                        <th>BIAYA</th>
+                        <th>POLI</th>
+                        <th>KELUHAN</th>
+                        <th>TANGGAL DAFTAR</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pasien as $item)
+                    @foreach ($daftar as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->no_bpjs }}</td>
-                            <td>
-                                @if ($item->foto)
-                                <a href="{{ Storage::url($item->foto) }}" target="blank">
-                                    <img src="{{ Storage::url($item->foto) }}" width="50">
-                                </a>
-                                @endif
-                                {{ $item->nama }}
-                            </td>
-                            <td>{{ $item->umur }}</td>
-                            <td>{{ $item->jenis_kelamin }}</td>
-                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->pasien->nama }}</td>
+                            <td>{{ $item->pasien->jenis_kelamin }}</td>
+                            <td>{{ $item->poli }}</td>                           
+                            <td>{{ $item->keluhan }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->update_at }}</td>
                             <td>
@@ -51,7 +41,7 @@
                     @endforeach
                 </tbody>
            </table>
-           {!! $pasien->links() !!}
+           {!! $daftar->links() !!}
         </div>
     </div>
 @endsection
