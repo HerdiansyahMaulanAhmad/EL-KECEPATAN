@@ -22,7 +22,14 @@ class DaftarController extends Controller
      */
     public function create()
     {
-        //
+        $data['ListPasien'] = \App\Models\Pasien::get();
+        $data['ListPoli'] = [
+            'Poli Umum' => 'Poli Umum',
+            'Poli Gigi' => 'Poli Gigi',
+            'Poli Kandungan' => 'Poli Kandungan',
+            'Poli Anak' => 'Poli Anak',
+        ];
+        return view('daftar_create', $data);
     }
 
     /**

@@ -1,5 +1,8 @@
 {
     "require-dev": {
         "laravel-lang/common": "^6.4"
+    },
+    "require": {
+        "laravel/ui": "^4.5"
     }
 }

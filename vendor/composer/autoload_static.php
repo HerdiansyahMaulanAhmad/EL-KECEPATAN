@@ -10,11 +10,11 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
         '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         'f625ee536139dfb962a398b200bdb2bd' => __DIR__ . '/..' . '/illuminate/support/functions.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
@@ -26,8 +26,8 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
         'ef65a1626449d89d0811cf9befce46f0' => __DIR__ . '/..' . '/illuminate/events/functions.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '2ceb5c5a6fb4dfb2119b186b81970c21' => __DIR__ . '/..' . '/laravel-lang/routes/helpers/functions.php',
     );
@@ -82,6 +82,7 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         array (
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
+            'Laravel\\Ui\\' => 11,
             'Laravel\\Prompts\\' => 16,
             'LaravelLang\\Routes\\' => 19,
             'LaravelLang\\Publisher\\' => 22,
@@ -101,12 +102,14 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         'I' => 
         array (
             'Illuminate\\View\\' => 16,
+            'Illuminate\\Validation\\' => 22,
             'Illuminate\\Translation\\' => 23,
             'Illuminate\\Support\\' => 19,
             'Illuminate\\Session\\' => 19,
             'Illuminate\\Routing\\' => 19,
             'Illuminate\\Pipeline\\' => 20,
             'Illuminate\\Http\\' => 16,
+            'Illuminate\\Foundation\\Auth\\' => 27,
             'Illuminate\\Filesystem\\' => 22,
             'Illuminate\\Events\\' => 18,
             'Illuminate\\Database\\' => 20,
@@ -127,12 +130,17 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         array (
             'Fruitcake\\Cors\\' => 15,
         ),
+        'E' => 
+        array (
+            'Egulias\\EmailValidator\\' => 23,
+        ),
         'D' => 
         array (
             'DragonCode\\Support\\' => 19,
             'DragonCode\\PrettyArray\\' => 23,
             'DragonCode\\Contracts\\' => 21,
             'Doctrine\\Inflector\\' => 19,
+            'Doctrine\\Common\\Lexer\\' => 22,
             'Dflydev\\DotAccessData\\' => 22,
         ),
         'C' => 
@@ -268,8 +276,8 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -294,6 +302,10 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         'League\\CommonMark\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
+        ),
+        'Laravel\\Ui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/ui/src',
         ),
         'Laravel\\Prompts\\' => 
         array (
@@ -359,15 +371,19 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         array (
             0 => __DIR__ . '/..' . '/illuminate/view',
         ),
+        'Illuminate\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/validation',
+        ),
         'Illuminate\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/translation',
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/macroable',
+            0 => __DIR__ . '/..' . '/illuminate/collections',
             1 => __DIR__ . '/..' . '/illuminate/conditionable',
-            2 => __DIR__ . '/..' . '/illuminate/collections',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
             3 => __DIR__ . '/..' . '/illuminate/support',
         ),
         'Illuminate\\Session\\' => 
@@ -385,6 +401,10 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         'Illuminate\\Http\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/http',
+        ),
+        'Illuminate\\Foundation\\Auth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/ui/auth-backend',
         ),
         'Illuminate\\Filesystem\\' => 
         array (
@@ -438,6 +458,10 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         array (
             0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
+        'Egulias\\EmailValidator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egulias/email-validator/src',
+        ),
         'DragonCode\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragon-code/support/src',
@@ -453,6 +477,10 @@ class ComposerStaticInit514fa8ea5edd8e0a94f97203cd5f1f4b
         'Doctrine\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
+        ),
+        'Doctrine\\Common\\Lexer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/lexer/src',
         ),
         'Dflydev\\DotAccessData\\' => 
         array (
