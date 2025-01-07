@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('polis')) {
-            Schema::create('polis', function (Blueprint $table) {
-                $table->id();
-                $table->string('nama');
-                $table->string('biaya');
-                $table->string('keterangan')->nullable();
-                $table->timestamps();
+        Schema::table('daftars', function (Blueprint $table) {
+            $table->dropColumn(['diagnosis', 'tindakan']);
         });
-    }
     }
 
     /**
@@ -27,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('polis');
+        Schema::table('daftars', function (Blueprint $table) {
+            $table->text('diagnosis')->nullable();
+            $table->text('tindakan')->nullable();
+        });
     }
 };

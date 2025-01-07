@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Pasien extends Model
 {
     use HasFactory;
+    protected $table = 'pasiens';
+    protected $dates = ['umur'];
+
     protected $guarded = [];
 
     public function daftar(): HasMany {

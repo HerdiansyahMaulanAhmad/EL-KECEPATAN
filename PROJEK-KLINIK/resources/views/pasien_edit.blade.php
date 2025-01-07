@@ -26,11 +26,19 @@
                 </div>
 
                 <div class="form-group mt-1 mb-3">
-                    <label for="umur">Umur</label>
-                    <input type="text" class="form-control @error('umur') is-invalid @enderror" id="umur" 
-                        name="umur" value="{{ old('umur') ?? $pasien->umur }}">
-                    <span class="text-danger">{{ $errors->first('umur') }}</span>
+                    <label for="umur">Tanggal Lahir</label>
+                    <input 
+                        type="date" 
+                        class="form-control @error('umur') is-invalid @enderror" 
+                        id="umur" 
+                        name="umur" 
+                        value="{{ old('umur', $pasien->umur ? \Carbon\Carbon::parse($pasien->umur)->format('Y-m-d') : '') }}">
+                    @error('umur')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
+                
+                
                 <div class="form-group mt-1 mb-3">
                     <label for="jenis_kelamin">Jenis Kelamin</label><br>
                     <div class="form-check form-check-inline">

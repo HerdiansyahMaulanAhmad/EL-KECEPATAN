@@ -1,9 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Pasien;
+use Carbon\Carbon;
 
 class PasienController extends Controller
 {
@@ -12,7 +13,11 @@ class PasienController extends Controller
      */
     public function index()
     {
-        $data['pasien'] = \App\Models\Pasien::latest()->paginate(6);
+        // Mendapatkan data pasien dengan pagination dan menghitung umur berdasarkan tanggal lahir
+        $data['pasien'] = Pasien::latest()->paginate(6);
+        foreach ($data['pasien'] as $pasien) {
+            $pasien->umur = Carbon::parse($pasien->umur)->age; // Menghitung umur berdasarkan tanggal lahir
+        }
         return view('pasien_index', $data);
     }
 
@@ -32,18 +37,21 @@ class PasienController extends Controller
         $requestData = $request->validate([
             'nama' => 'required|min:3',
             'no_bpjs' => 'required',
-            'umur' => 'required',
+            'umur' => 'required|date', // Validasi untuk tanggal lahir
             'jenis_kelamin' => 'required',
             'alamat' => 'nullable',
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:1000',
         ]);
-        $pasien = new \App\Models\Pasien;
+    
+        $pasien = new Pasien;
         $pasien->fill($requestData);
         $pasien->foto = $request->file('foto')->store('public');
         $pasien->save();
         flash('Data berhasil disimpan')->success();
         return back();
     }
+    
+    
 
     /**
      * Display the specified resource.
@@ -58,8 +66,8 @@ class PasienController extends Controller
      */
     public function edit(string $id)
     {
-        $data['pasien'] = \App\Models\Pasien::findOrFail($id);
-        return view ('pasien_edit',$data);
+        $data['pasien'] = Pasien::findOrFail($id);
+        return view('pasien_edit', $data);
     }
 
     /**
@@ -68,20 +76,25 @@ class PasienController extends Controller
     public function update(Request $request, string $id)
     {
         $requestData = $request->validate([
+            'no_bpjs' => 'required|unique:pasiens,no_bpjs,' . $id,
             'nama' => 'required|min:3',
-            'no_bpjs' => 'required|unique:pasiens,no_bpjs,' .$id,
-            'umur' => 'required',
+            'umur' => 'required|date', // Menggunakan 'date' untuk tanggal lahir
             'jenis_kelamin' => 'required',
             'alamat' => 'nullable',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:1000',
         ]);
-        $pasien = \App\Models\Pasien::findOrFail($id);
+
+        $pasien = Pasien::findOrFail($id);
         $pasien->fill($requestData);
-        if ($request->hasfile('foto')){
-            storage::delete($pasien->foto);
+
+        // Jika ada foto baru, hapus yang lama dan simpan yang baru
+        if ($request->hasfile('foto')) {
+            Storage::delete($pasien->foto);
             $pasien->foto = $request->file('foto')->store('public');
         }
+        
         $pasien->save();
+
         flash('Data berhasil diubah')->success();
         return redirect('/pasien');
     }
@@ -91,17 +104,18 @@ class PasienController extends Controller
      */
     public function destroy(string $id)
     {
-        $pasien = \App\Models\Pasien::findOrFail($id);
+        $pasien = Pasien::findOrFail($id);
 
-        if($pasien->daftar->count() >= 1) {
+        if ($pasien->daftar->count() >= 1) {
             flash('Data tidak bisa dihapus karena terkait data pendaftaran')->error();
             return back();
         }
 
-        if ($pasien->foto !=null && Storage::exists($pasien->foto)){
+        if ($pasien->foto != null && Storage::exists($pasien->foto)) {
             Storage::delete($pasien->foto);
         }
         $pasien->delete();
+
         flash('Data berhasil dihapus');
         return back();
     }

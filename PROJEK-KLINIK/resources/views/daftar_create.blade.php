@@ -1,48 +1,43 @@
-@extends('layouts.app_modern',['tittle'=>'Pendaftaran Baru'])
-@section('content')
-<div class="card">
-    <div class="card-header">
-        Form Pendaftaran Pasien
-    </div>
-    <div class="card-body">
-        <form action="/daftar" method="POST">
-            @csrf
-            <div class="form-group mt-3">
-                <label for="tanggal_daftar">Tanggal Daftar</label>
-                <input type="date" name="tanggal_daftar" class="form-control"
-                value="{{ old('tanggal_daftar') ?? date('Y-m-d') }}">
-                <span class="text-danger">{{ $errors->first('tanggal_daftar') }}</span>
-            </div>
-            <div class="form-group mt-3">
-                <label for="pasien_id">Nama Pasien
-                |<a href="/pasien/create" target="blank">Pasien Baru</a>
-                </label>
-                <select name="pasien_id" class="form-control select2">
-                    <option value="">-- Pilih Pasien --</option>
-                    @foreach ($ListPasien as $item)
-                        <option value="{{ $item->id }}" @selected(old('pasien_id') == $item->id)>
-                            {{ $item->no_bpjs }} - {{ $item->nama }}
-                        </option>
-                    @endforeach
-                </select>
-                <span class="text-danger">{{ $errors->first('pasien_id') }}</span>
-                <div>
-                    Setelah menambahkan data pasien baru, tekan F5
-                </div>
-            </div>
-            <div class="form-group mt-3">
-                <label for="poli">Poli</label>
-                <select name="poli" class="form-control">
-                    <option value="">-- Pilih Poli --</option>
-                    @foreach ($ListPoli as $key => $val)
-                        <option value="{{ $key }}" @selected(old('poli') == $key)>{{ $val }}
-                        </option>
-                    @endforeach
-                </select>
-                <span class="text-danger">{{ $errors->first('poli') }}</span>
-            </div>
+@extends('layouts.app_modern', ['title' => 'Tambah Pendaftaran Pasien'])
 
-        </form>
+@section('content')
+    <div class="card">
+        <h3 class="card-header">Tambah Pendaftaran Pasien</h3>
+        <div class="card-body">
+            <form action="{{ route('daftar.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="pasien_id" class="form-label">Nama Pasien</label>
+                    <select name="pasien_id" id="pasien_id" class="form-select" required>
+                        <option value="" disabled selected>Pilih Pasien</option>
+                        @foreach ($pasien as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="poli_id" class="form-label">Poli</label>
+                    <select name="poli_id" id="poli_id" class="form-select" required>
+                        <option value="" disabled selected>Pilih Poli</option>
+                        @foreach ($poli as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="keluhan" class="form-label">Keluhan</label>
+                    <textarea name="keluhan" id="keluhan" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tanggal_daftar" class="form-label">Tanggal Daftar</label>
+                    <input type="date" name="tanggal_daftar" id="tanggal_daftar" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+        </div>
     </div>
-</div>
 @endsection

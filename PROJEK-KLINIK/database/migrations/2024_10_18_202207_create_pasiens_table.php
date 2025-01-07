@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_bpjs');
             $table->string('nama');      
-            $table->integer('umur');
+            $table->date('umur');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('alamat')->nullable();
             $table->timestamps();

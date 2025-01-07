@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>klinik</title>
+  <title> {{ $title ?? '' }} {{ env('APP_NAME') }}</title>
   <link rel="shortcut icon" type="image/png" href="/modern/src/assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="/modern/src/assets/css/styles.min.css" />
   
@@ -42,8 +42,22 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-           
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/poli" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-user"></i>
+                  </span>
+                  <span class="hide-menu">Data Poli</span>
+                </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/poli/create" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-user"></i>
+                  </span>
+                  <span class="hide-menu">Tambah Poli</span>
+                </a>
+          </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="/pasien" aria-expanded="false">
                     <span>

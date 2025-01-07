@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Poli;
@@ -7,59 +6,55 @@ use Illuminate\Http\Request;
 
 class PoliController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $poli = Poli::paginate(10);  // Menampilkan data dengan pagination
+        return view('poli_index', compact('poli'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('poli_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'biaya' => 'required|numeric|min:0',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        Poli::create($request->all());
+
+        return redirect()->route('poli.index')->with('success', 'Data poli berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Poli $poli)
+    public function edit($id)
     {
-        //
+        $poli = Poli::findOrFail($id);
+        return view('poli_edit', compact('poli'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Poli $poli)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'biaya' => 'required|numeric|min:0',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        $poli = Poli::findOrFail($id);
+        $poli->update($request->all());
+
+        return redirect()->route('poli.index')->with('success', 'Data poli berhasil diperbarui.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Poli $poli)
+    public function destroy($id)
     {
-        //
-    }
+        $poli = Poli::findOrFail($id);
+        $poli->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Poli $poli)
-    {
-        //
+        return redirect()->route('poli.index')->with('success', 'Data poli berhasil dihapus.');
     }
 }
