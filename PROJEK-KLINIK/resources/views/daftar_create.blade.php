@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <h3 class="card-header">Tambah Pendaftaran Pasien</h3>
+        <h3 class="card-header">Tambah Pendaftaran Pasien x Fitur digunakan untuk menambah user pasien</h3>
         <div class="card-body">
             <form action="{{ route('daftar.store') }}" method="POST">
                 @csrf
